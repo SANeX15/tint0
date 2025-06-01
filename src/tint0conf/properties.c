@@ -1,6 +1,6 @@
 /**************************************************************************
 *
-* Tint2conf
+* tint0conf
 *
 * Copyright (C) 2009 Thierry lorthiois (lorthiois@bbsoft.fr) from Omega distribution
 *
@@ -148,7 +148,7 @@ GtkWidget *current_background,
 
 
 GtkWidget *addScrollBarToWidget(GtkWidget *widget);
-gboolean gtk_tree_model_iter_prev_tint2(GtkTreeModel *model, GtkTreeIter *iter);
+gboolean gtk_tree_model_iter_prev_tint0(GtkTreeModel *model, GtkTreeIter *iter);
 
 void change_paragraph(GtkWidget *widget);
 void create_general(GtkWidget *parent);
@@ -215,7 +215,7 @@ void applyClicked(GtkWidget *widget, gpointer data)
 
 		config_save_file(file);
 	}
-	int unused = system("killall -SIGUSR1 tint2 || pkill -SIGUSR1 -x tint2");
+	int unused = system("killall -SIGUSR1 tint0 || pkill -SIGUSR1 -x tint0");
 	(void)unused;
 	g_free(file);
 	g_timeout_add(SNAPSHOT_TICK, (GSourceFunc)update_snapshot, NULL);
@@ -1643,11 +1643,11 @@ void create_panel(GtkWidget *parent)
 	panel_window_name = gtk_entry_new();
 	gtk_widget_show(panel_window_name);
 	gtk_entry_set_width_chars(GTK_ENTRY(panel_window_name), 28);
-	gtk_entry_set_text(GTK_ENTRY(panel_window_name), "tint2");
+	gtk_entry_set_text(GTK_ENTRY(panel_window_name), "tint0");
 	gtk_table_attach(GTK_TABLE(table), panel_window_name, col, col+1, row, row+1, GTK_FILL, 0, 0, 0);
 	col++;
 	gtk_tooltips_set_tip(tooltips, panel_window_name, _("Specifies the name of the panel window. "
-						 "This is useful if you want to configure special treatment of tint2 windows in your "
+						 "This is useful if you want to configure special treatment of tint0 windows in your "
 						 "window manager or compositor."), NULL);
 
 	change_paragraph(parent);
@@ -2010,7 +2010,7 @@ void panel_move_item_up(GtkWidget *widget, gpointer data)
 
 		if (gtk_tree_selection_get_selected(gtk_tree_view_get_selection(GTK_TREE_VIEW(panel_items_view)), &model, &iter)) {
 			GtkTreeIter prev = iter;
-			if (gtk_tree_model_iter_prev_tint2(model, &prev)) {
+			if (gtk_tree_model_iter_prev_tint0(model, &prev)) {
 				gchar *name1;
 				gchar *value1;
 				gtk_tree_model_get(model, &iter,
@@ -2116,13 +2116,13 @@ void launcher_move_app_up(GtkWidget *widget, gpointer data)
 
 	if (gtk_tree_selection_get_selected(gtk_tree_view_get_selection(GTK_TREE_VIEW(launcher_apps_view)), &model, &iter)) {
 		GtkTreeIter prev = iter;
-		if (gtk_tree_model_iter_prev_tint2(model, &prev)) {
+		if (gtk_tree_model_iter_prev_tint0(model, &prev)) {
 			gtk_list_store_swap(launcher_apps, &iter, &prev);
 		}
 	}
 }
 
-gboolean gtk_tree_model_iter_prev_tint2(GtkTreeModel *model, GtkTreeIter *iter)
+gboolean gtk_tree_model_iter_prev_tint0(GtkTreeModel *model, GtkTreeIter *iter)
 {
 	GtkTreeIter i;
 	if (!gtk_tree_model_get_iter_first(model, &i)) {
@@ -2758,7 +2758,7 @@ void create_launcher(GtkWidget *parent)
 	gtk_table_attach(GTK_TABLE(table), launcher_icon_theme, col, col+1, row, row+1, GTK_FILL, 0, 0, 0);
 	col++;
 	gtk_tooltips_set_tip(tooltips, launcher_icon_theme, _("The icon theme used to display launcher icons. If left blank, "
-						 "tint2 will detect and use the icon theme of your desktop as long as you have "
+						 "tint0 will detect and use the icon theme of your desktop as long as you have "
 						 "an XSETTINGS manager running (most desktop environments do)."), NULL);
 
 	launcher_icon_theme_override = gtk_check_button_new_with_label(_("Overrides XSETTINGS"));

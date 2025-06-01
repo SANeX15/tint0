@@ -1,12 +1,12 @@
-project( tint2 )
+project( tint0 )
 cmake_minimum_required( VERSION 2.6 )
 
 option( ENABLE_BATTERY "Enable battery status plugin" ON )
-option( ENABLE_TINT2CONF "Enable tint2conf build, a GTK+2 theme configurator for tint2" ON )
+option( ENABLE_tint0CONF "Enable tint0conf build, a GTK+2 theme configurator for tint0" ON )
 option( ENABLE_EXAMPLES "Install additional tin2rc examples" ON )
 option( ENABLE_RSVG "Rsvg support (launcher only)" ON )
 option( ENABLE_SN "Startup notification support" ON )
-option( ENABLE_ASAN "Build tint2 with AddressSanitizer" OFF )
+option( ENABLE_ASAN "Build tint0 with AddressSanitizer" OFF )
 option( ENABLE_BACKTRACE "Dump a backtrace in case of fatal errors (e.g. X11 I/O error)" OFF )
 option( ENABLE_BACKTRACE_ON_SIGNAL "Dump a backtrace also when receiving signals such as SIGSEGV" OFF )
 if( CMAKE_SYSTEM_NAME STREQUAL "Linux" )
@@ -64,7 +64,7 @@ endif(ENABLE_SN)
 find_library( RT_LIBRARY rt )
 
 if( NOT X11_FOUND OR NOT PANGOCAIRO_FOUND OR NOT PANGO_FOUND OR NOT CAIRO_FOUND OR NOT GLIB2_FOUND OR NOT GOBJECT2_FOUND OR NOT IMLIB2_FOUND )
-  message( FATAL_ERROR "Not all dependencies fulfilled. See https://gitlab.com/o9000/tint2/wikis/Install" )
+  message( FATAL_ERROR "Not all dependencies fulfilled. See https://gitlab.com/o9000/tint0/wikis/Install" )
 endif( NOT X11_FOUND OR NOT PANGOCAIRO_FOUND OR NOT PANGO_FOUND OR NOT CAIRO_FOUND OR NOT GLIB2_FOUND OR NOT GOBJECT2_FOUND OR NOT IMLIB2_FOUND )
 
 string( REPLACE ";" " " FLAGS_REPLACED "${IMLIB2_LDFLAGS}" )
@@ -181,11 +181,11 @@ else()
 	add_definitions( -DDISABLE_BACKTRACE )
 endif()
 
-if( ENABLE_TINT2CONF )
+if( ENABLE_tint0CONF )
   add_definitions( -DHAVE_VERSION_H )
-  add_subdirectory( src/tint2conf )
-  add_dependencies( tint2conf version )
-endif( ENABLE_TINT2CONF )
+  add_subdirectory( src/tint0conf )
+  add_dependencies( tint0conf version )
+endif( ENABLE_tint0CONF )
 
 if( ENABLE_ASAN )
   SET(ASAN_C_FLAGS " -O0 -g3 -gdwarf-2 -fsanitize=address -fno-common -fno-omit-frame-pointer -rdynamic -Wshadow")
@@ -198,7 +198,7 @@ endif()
 set( MANDIR share/man CACHE PATH "Directory for man pages" )
 set( DATADIR share CACHE PATH "Directory for shared data" )
 set( SYSCONFDIR /etc CACHE PATH "Directory for configuration files" )
-set( DOCDIR share/doc/tint2 CACHE PATH "Directory for documentation files" )
+set( DOCDIR share/doc/tint0 CACHE PATH "Directory for documentation files" )
 
 add_custom_target( version ALL "${PROJECT_SOURCE_DIR}/get_version.sh" "\"${PROJECT_SOURCE_DIR}\"" )
 
@@ -211,8 +211,8 @@ link_directories( ${X11_LIBRARY_DIRS}
                   ${IMLIB2_LIBRARY_DIRS}
                   ${RSVG_LIBRARY_DIRS}
                   ${SN_LIBRARY_DIRS} )
-add_executable(tint2 ${SOURCES})
-target_link_libraries( tint2 ${X11_LIBRARIES}
+add_executable(tint0 ${SOURCES})
+target_link_libraries( tint0 ${X11_LIBRARIES}
                              ${PANGOCAIRO_LIBRARIES}
                              ${PANGO_LIBRARIES}
                              ${CAIRO_LIBRARIES}
@@ -222,30 +222,30 @@ target_link_libraries( tint2 ${X11_LIBRARIES}
 							 ${UNWIND_LIBRARIES}
 							 ${EXECINFO_LIBRARIES} )
 if( ENABLE_RSVG )
-  target_link_libraries( tint2 ${RSVG_LIBRARIES} )
+  target_link_libraries( tint0 ${RSVG_LIBRARIES} )
 endif( ENABLE_RSVG )
 if( ENABLE_SN )
-  target_link_libraries( tint2 ${SN_LIBRARIES} )
+  target_link_libraries( tint0 ${SN_LIBRARIES} )
 endif( ENABLE_SN )
 if( RT_LIBRARY )
-  target_link_libraries( tint2 ${RT_LIBRARY} )
+  target_link_libraries( tint0 ${RT_LIBRARY} )
 endif( RT_LIBRARY )
 
-target_link_libraries( tint2 m )
+target_link_libraries( tint0 m )
 
-add_dependencies( tint2 version )
-set_target_properties( tint2 PROPERTIES COMPILE_FLAGS "-Wall -Wpointer-arith -fno-strict-aliasing -pthread -std=c99 ${ASAN_C_FLAGS}" )
-set_target_properties( tint2 PROPERTIES LINK_FLAGS "-pthread -fno-strict-aliasing ${ASAN_L_FLAGS} ${BACKTRACE_L_FLAGS}" )
+add_dependencies( tint0 version )
+set_target_properties( tint0 PROPERTIES COMPILE_FLAGS "-Wall -Wpointer-arith -fno-strict-aliasing -pthread -std=c99 ${ASAN_C_FLAGS}" )
+set_target_properties( tint0 PROPERTIES LINK_FLAGS "-pthread -fno-strict-aliasing ${ASAN_L_FLAGS} ${BACKTRACE_L_FLAGS}" )
 
-install( TARGETS tint2 DESTINATION bin )
-install( FILES tint2.svg DESTINATION ${DATADIR}/icons/hicolor/scalable/apps )
-install( FILES tint2.desktop DESTINATION ${DATADIR}/applications )
+install( TARGETS tint0 DESTINATION bin )
+install( FILES tint0.svg DESTINATION ${DATADIR}/icons/hicolor/scalable/apps )
+install( FILES tint0.desktop DESTINATION ${DATADIR}/applications )
 install( CODE "execute_process(COMMAND gtk-update-icon-cache -f -t ${DATADIR}/icons/hicolor WORKING_DIRECTORY ${CMAKE_INSTALL_PREFIX})" )
-install( FILES sample/tint2rc DESTINATION ${SYSCONFDIR}/xdg/tint2 )
-install( FILES default_icon.png DESTINATION ${DATADIR}/tint2 )
+install( FILES sample/tint0rc DESTINATION ${SYSCONFDIR}/xdg/tint0 )
+install( FILES default_icon.png DESTINATION ${DATADIR}/tint0 )
 install( FILES AUTHORS ChangeLog README.md DESTINATION ${DOCDIR} )
-install( FILES doc/tint2.1 DESTINATION ${MANDIR}/man1 )
+install( FILES doc/tint0.1 DESTINATION ${MANDIR}/man1 )
 if( ENABLE_EXAMPLES )
-  file( GLOB SAMPLEFILES sample/*.tint2rc )
-  install( FILES ${SAMPLEFILES} DESTINATION ${DATADIR}/tint2 )
+  file( GLOB SAMPLEFILES sample/*.tint0rc )
+  install( FILES ${SAMPLEFILES} DESTINATION ${DATADIR}/tint0 )
 endif( ENABLE_EXAMPLES )

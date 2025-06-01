@@ -12,7 +12,7 @@
 // Panel panel_config contains an array of Execp, each storing all config options and all the state variables.
 // Only these run commands.
 //
-// Tint2 maintains an array of Panels, one for each monitor. Each stores an array of Execp which was initially copied
+// tint0 maintains an array of Panels, one for each monitor. Each stores an array of Execp which was initially copied
 // from panel_config. Each works as a frontend to the corresponding Execp in panel_config as backend, using the
 // backend's config and state variables.
 
@@ -115,7 +115,7 @@ void init_execp();
 // At this point the Area has not been added yet to the GUI tree, but it will be added right away.
 void init_execp_panel(void *panel);
 
-// Called just before the panels are destroyed. Afterwards, tint2 exits or restarts and reads the config again.
+// Called just before the panels are destroyed. Afterwards, tint0 exits or restarts and reads the config again.
 // Releases all frontends and then all the backends.
 // The frontend items are not freed by this function, only their members. The items are Areas which are freed in the
 // GUI element tree cleanup function (remove_area).

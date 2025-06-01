@@ -1,6 +1,6 @@
 /**************************************************************************
 *
-* Tint2 : common windows function
+* tint0 : common windows function
 *
 * Copyright (C) 2007 Pål Staurland (staura@gmail.com)
 * Modified (C) 2008 thierry lorthiois (lorthiois@bbsoft.fr) from Omega distribution
@@ -499,7 +499,7 @@ Imlib_Image load_image(const char *path, int cached)
 				fprintf(stderr, "Could not load svg image!: %s", err->message);
 				g_error_free(err);
 			} else {
-				gchar *name = g_build_filename(g_get_user_config_dir(), "tint2", suffix, NULL);
+				gchar *name = g_build_filename(g_get_user_config_dir(), "tint0", suffix, NULL);
 				GdkPixbuf *pixbuf = rsvg_handle_get_pixbuf(svg);
 				gdk_pixbuf_save(pixbuf, name, "png", NULL, NULL);
 			}
@@ -507,7 +507,7 @@ Imlib_Image load_image(const char *path, int cached)
 		} else {
 			// Parent
 			waitpid(pid, 0, 0);
-			gchar *name = g_build_filename(g_get_user_config_dir(), "tint2", suffix, NULL);
+			gchar *name = g_build_filename(g_get_user_config_dir(), "tint0", suffix, NULL);
 			image = imlib_load_image_immediately_without_cache(name);
 			g_remove(name);
 			g_free(name);
@@ -734,6 +734,6 @@ char* get_own_path()
 	}
 #endif
 
-	sprintf(buf, "tint2");
+	sprintf(buf, "tint0");
 	return buf;
 }

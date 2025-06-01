@@ -19,7 +19,7 @@
 #
 # git checkout master
 #
-# See more at https://gitlab.com/o9000/tint2/wikis/Development
+# See more at https://gitlab.com/o9000/tint0/wikis/Development
 
 VERSION=$(./get_version.sh --strict)
 if [ ! $? -eq 0 ]
@@ -28,7 +28,7 @@ then
     exit 1
 fi
 
-DIR=tint2-$VERSION
+DIR=tint0-$VERSION
 ARCHIVE=$DIR.tar.gz
 echo "Making release $DIR"
 rm -rf $DIR $ARCHIVE

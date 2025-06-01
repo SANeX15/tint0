@@ -92,7 +92,7 @@ void default_panel()
 	panel_strut_policy = STRUT_FOLLOW_SIZE;
 	panel_dock = FALSE;         // default not in the dock
 	panel_layer = BOTTOM_LAYER; // default is bottom layer
-	panel_window_name = strdup("tint2");
+	panel_window_name = strdup("tint0");
 	wm_menu = FALSE;
 	max_tick_urgent = 14;
 	mouse_left = TOGGLE_ICONIFY;
@@ -155,7 +155,7 @@ void init_panel()
 {
 	if (panel_config.monitor > (server.num_monitors - 1)) {
 		// server.num_monitors minimum value is 1 (see get_monitors())
-		fprintf(stderr, "warning : monitor not found. tint2 default to all monitors.\n");
+		fprintf(stderr, "warning : monitor not found. tint0 default to all monitors.\n");
 		panel_config.monitor = 0;
 	}
 
@@ -183,7 +183,7 @@ void init_panel()
 	}
 
 	fprintf(stderr,
-			"tint2 : nb monitor %d, nb monitor used %d, nb desktop %d\n",
+			"tint0 : nb monitor %d, nb monitor used %d, nb desktop %d\n",
 			server.num_monitors,
 			num_panels,
 			server.num_desktops);
@@ -290,7 +290,7 @@ void init_panel_size_and_position(Panel *panel)
 		if (panel->area.width + panel->marginx > server.monitors[panel->monitor].width)
 			panel->area.width = server.monitors[panel->monitor].width - panel->marginx;
 		if (panel->area.bg->border.radius > panel->area.height / 2) {
-			printf("panel_background_id rounded is too big... please fix your tint2rc\n");
+			printf("panel_background_id rounded is too big... please fix your tint0rc\n");
 			g_array_append_val(backgrounds, *panel->area.bg);
 			panel->area.bg = &g_array_index(backgrounds, Background, backgrounds->len - 1);
 			panel->area.bg->border.radius = panel->area.height / 2;
@@ -319,7 +319,7 @@ void init_panel_size_and_position(Panel *panel)
 			panel->area.height = server.monitors[panel->monitor].height - panel->marginy;
 
 		if (panel->area.bg->border.radius > panel->area.width / 2) {
-			printf("panel_background_id rounded is too big... please fix your tint2rc\n");
+			printf("panel_background_id rounded is too big... please fix your tint0rc\n");
 			g_array_append_val(backgrounds, *panel->area.bg);
 			panel->area.bg = &g_array_index(backgrounds, Background, backgrounds->len - 1);
 			panel->area.bg->border.radius = panel->area.width / 2;
@@ -637,7 +637,7 @@ void set_panel_properties(Panel *p)
 	memset(&wmhints, 0, sizeof(wmhints));
 	if (panel_dock) {
 		// Necessary for placing the panel into the dock on Openbox and Fluxbox.
-		// See https://gitlab.com/o9000/tint2/issues/465
+		// See https://gitlab.com/o9000/tint0/issues/465
 		wmhints.flags = IconWindowHint | WindowGroupHint | StateHint;
 		wmhints.icon_window = wmhints.window_group = p->main_win;
 		wmhints.initial_state = WithdrawnState;
@@ -672,7 +672,7 @@ void set_panel_properties(Panel *p)
 	update_strut(p);
 
 	// Fixed position and non-resizable window
-	// Allow panel move and resize when tint2 reload config file
+	// Allow panel move and resize when tint0 reload config file
 	int minwidth = panel_autohide ? p->hidden_width : p->area.width;
 	int minheight = panel_autohide ? p->hidden_height : p->area.height;
 	XSizeHints size_hints;
@@ -685,8 +685,8 @@ void set_panel_properties(Panel *p)
 
 	// Set WM_CLASS
 	XClassHint *classhint = XAllocClassHint();
-	classhint->res_name = (char *)"tint2";
-	classhint->res_class = (char *)"Tint2";
+	classhint->res_name = (char *)"tint0";
+	classhint->res_class = (char *)"tint0";
 	XSetClassHint(server.display, p->main_win, classhint);
 	XFree(classhint);
 }

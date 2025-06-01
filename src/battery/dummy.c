@@ -1,6 +1,6 @@
 /**************************************************************************
 *
-* Tint2 : Dummy battery (non-functional)
+* tint0 : Dummy battery (non-functional)
 *
 * Copyright (C) 2015 Sebastian Reichel <sre@ring0.de>
 *
@@ -21,7 +21,7 @@
 #include "common.h"
 #include "battery.h"
 
-#warning tint2 has no battery support for this operating system!
+#warning tint0 has no battery support for this operating system!
 
 gboolean battery_os_init()
 {

@@ -13,12 +13,12 @@
 
 // DATA ORGANISATION
 //
-// Areas in tint2 are similar to widgets in a GUI.
+// Areas in tint0 are similar to widgets in a GUI.
 // All graphical objects (panel, taskbar, task, systray, clock, ...) inherit the abstract class Area.
 // This class 'Area' stores data about the background, border, size, position, padding and the child areas.
 // Inheritance is simulated by having an Area member as the first member of each object (thus &object == &area).
 //
-// tint2 uses multiple panels, one per monitor. Each panel has an area containing the children objects in a tree of
+// tint0 uses multiple panels, one per monitor. Each panel has an area containing the children objects in a tree of
 // areas. The level in the tree gives the z-order: child areas are always displayed on top of their parents.
 //
 //
@@ -55,7 +55,7 @@
 // There is a special Panel instance called 'panel_config' which stores the config options and the state variables
 // of the widgets (however some config options are stored as global variables by the widgets).
 //
-// Tint2 maintains an array of Panel instances, one for each monitor. These contain the actual Areas that are used to
+// tint0 maintains an array of Panel instances, one for each monitor. These contain the actual Areas that are used to
 // render the panels on screen, interact with user input etc.
 // Each Panel is initialized as a raw copy (memcpy, see init_panel()) of panel_config.
 //
@@ -85,7 +85,7 @@
 //
 // * void cleanup_widget();
 //
-//   Called just before the panels are destroyed. Afterwards, tint2 exits or restarts and reads the config again.
+//   Called just before the panels are destroyed. Afterwards, tint0 exits or restarts and reads the config again.
 //   Must releases all resources.
 //   The widget itself should not be freed by this function, only its members or global variables that were set.
 //   The widget is freed by the Area tree cleanup function (remove_area).

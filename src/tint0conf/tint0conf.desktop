@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Name=Tint2 panel settings
+Name=tint0 panel settings
 Name[am]=ፓነል  አስተዳዳሪ
 Name[ar]=مدير الائحة :
 Name[ast]=Alministrador de panel
@@ -51,8 +51,8 @@ Name[ur_PK]=پینل منیجر
 Name[vi]=Quản lý panel
 Name[zh_CN]=面板管理器
 Name[zh_TW]=面板管理程式
-Exec=tint2conf
-Icon=tint2conf
+Exec=tint0conf
+Icon=tint0conf
 Terminal=false
 Categories=Settings;DesktopSettings;
 

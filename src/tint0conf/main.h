@@ -11,7 +11,7 @@
 #include <glib/gi18n-lib.h>
 #else
 #define _(String) String
-#define GETTEXT_PACKAGE "tint2conf"
+#define GETTEXT_PACKAGE "tint0conf"
 #endif
 
 #define SNAPSHOT_TICK 190

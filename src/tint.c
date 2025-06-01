@@ -1,6 +1,6 @@
 /**************************************************************************
 *
-* Tint2 panel
+* tint0 panel
 *
 * Copyright (C) 2007 Pål Staurland (staura@gmail.com)
 * Modified (C) 2008 thierry lorthiois (lorthiois@bbsoft.fr) from Omega distribution
@@ -94,8 +94,8 @@ void detect_compositor(void *arg)
 	// No compositor, check for one
 	if (XGetSelectionOwner(server.display, server.atom._NET_WM_CM_S0) != None) {
 		stop_timeout(detect_compositor_timer);
-		// Restart tint2
-		fprintf(stderr, "Detected compositor, restarting tint2...\n");
+		// Restart tint0
+		fprintf(stderr, "Detected compositor, restarting tint0...\n");
 		kill(getpid(), SIGUSR1);
 	}
 }
@@ -244,9 +244,9 @@ void handle_crash(const char *reason)
 {
 	// We are going to crash, so restart the panel
 	char path[4096];
-	sprintf(path, "%s/.tint2-crash.log", get_home_dir());
+	sprintf(path, "%s/.tint0-crash.log", get_home_dir());
 	int log_fd = open(path, O_WRONLY|O_CREAT|O_TRUNC, 0600);
-	log_string(log_fd, RED "tint2 crashed, reason: ");
+	log_string(log_fd, RED "tint0 crashed, reason: ");
 	log_string(log_fd, reason);
 	log_string(log_fd, RESET "\n");
 	dump_backtrace(log_fd);
@@ -271,7 +271,7 @@ void x11_io_error(Display *display)
 
 void init(int argc, char *argv[])
 {
-	// Make stdout/stderr flush after a newline (for some reason they don't even if tint2 is started from a terminal)
+	// Make stdout/stderr flush after a newline (for some reason they don't even if tint0 is started from a terminal)
 	setlinebuf(stdout);
 	setlinebuf(stderr);
 
@@ -294,10 +294,10 @@ void init(int argc, char *argv[])
 	for (int i = 1; i < argc; ++i) {
 		int error = 0;
 		if (strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0) {
-			printf("Usage: tint2 [[-c] <config_file>]\n");
+			printf("Usage: tint0 [[-c] <config_file>]\n");
 			exit(0);
 		} else if (strcmp(argv[i], "-v") == 0 || strcmp(argv[i], "--version") == 0) {
-			printf("tint2 version %s\n", VERSION_STRING);
+			printf("tint0 version %s\n", VERSION_STRING);
 			exit(0);
 		} else if (strcmp(argv[i], "-c") == 0) {
 			if (i + 1 < argc) {
@@ -319,7 +319,7 @@ void init(int argc, char *argv[])
 			error = 1;
 		}
 		if (error) {
-			printf("Usage: tint2 [[-c] <config_file>]\n");
+			printf("Usage: tint0 [[-c] <config_file>]\n");
 			exit(1);
 		}
 	}
@@ -415,7 +415,7 @@ void init_X11_pre_config()
 {
 	server.display = XOpenDisplay(NULL);
 	if (!server.display) {
-		fprintf(stderr, "tint2: could not open display.\n");
+		fprintf(stderr, "tint0: could not open display.\n");
 		exit(1);
 	}
 	XSetErrorHandler((XErrorHandler)server_catch_error);
@@ -472,7 +472,7 @@ void init_X11_post_config()
 	// load default icon
 	const gchar *const *data_dirs = g_get_system_data_dirs();
 	for (int i = 0; data_dirs[i] != NULL; i++) {
-		gchar *path = g_build_filename(data_dirs[i], "tint2", "default_icon.png", NULL);
+		gchar *path = g_build_filename(data_dirs[i], "tint0", "default_icon.png", NULL);
 		if (g_file_test(path, G_FILE_TEST_EXISTS))
 			default_icon = imlib_load_image(path);
 		g_free(path);
@@ -608,7 +608,7 @@ void window_action(Task *task, MouseAction action)
 	}
 }
 
-int tint2_handles_click(Panel *panel, XButtonEvent *e)
+int tint0_handles_click(Panel *panel, XButtonEvent *e)
 {
 	Task *task = click_task(panel, e->x, e->y);
 	if (task) {
@@ -674,7 +674,7 @@ void event_button_press(XEvent *e)
 	if (!panel)
 		return;
 
-	if (wm_menu && !tint2_handles_click(panel, &e->xbutton)) {
+	if (wm_menu && !tint0_handles_click(panel, &e->xbutton)) {
 		forward_click(e);
 		return;
 	}
@@ -754,7 +754,7 @@ void event_button_release(XEvent *e)
 	if (!panel)
 		return;
 
-	if (wm_menu && !tint2_handles_click(panel, &e->xbutton)) {
+	if (wm_menu && !tint0_handles_click(panel, &e->xbutton)) {
 		forward_click(e);
 		if (panel_layer == BOTTOM_LAYER)
 			XLowerWindow(server.display, panel->main_win);
@@ -1160,7 +1160,7 @@ void event_configure_notify(XEvent *e)
 
 	// change in root window (xrandr)
 	if (win == server.root_win) {
-		fprintf(stderr, YELLOW "%s %d: triggering tint2 restart due to configuration change in the root window" RESET "\n", __FILE__, __LINE__);
+		fprintf(stderr, YELLOW "%s %d: triggering tint0 restart due to configuration change in the root window" RESET "\n", __FILE__, __LINE__);
 		signal_pending = SIGUSR1;
 		return;
 	}
@@ -1440,7 +1440,7 @@ start:
 
 	if (!config_read()) {
 		fprintf(stderr, "Could not read config file.\n"
-						"Usage: tint2 [[-c] <config_file>]\n");
+						"Usage: tint0 [[-c] <config_file>]\n");
 		cleanup();
 		exit(1);
 	}
@@ -1703,7 +1703,7 @@ start:
 				case DestroyNotify:
 					if (e.xany.window == server.composite_manager) {
 						// Stop real_transparency
-						fprintf(stderr, YELLOW "%s %d: triggering tint2 restart due to compositor shutdown" RESET "\n", __FILE__, __LINE__);
+						fprintf(stderr, YELLOW "%s %d: triggering tint0 restart due to compositor shutdown" RESET "\n", __FILE__, __LINE__);
 						signal_pending = SIGUSR1;
 						break;
 					}
@@ -1722,11 +1722,11 @@ start:
 					if (ev->data.l[1] == server.atom._NET_WM_CM_S0) {
 						if (ev->data.l[2] == None) {
 							// Stop real_transparency
-							fprintf(stderr, YELLOW "%s %d: triggering tint2 restart due to change in transparency" RESET "\n", __FILE__, __LINE__);
+							fprintf(stderr, YELLOW "%s %d: triggering tint0 restart due to change in transparency" RESET "\n", __FILE__, __LINE__);
 							signal_pending = SIGUSR1;
 						} else {
 							// Start real_transparency
-							fprintf(stderr, YELLOW "%s %d: triggering tint2 restart due to change in transparency" RESET "\n", __FILE__, __LINE__);
+							fprintf(stderr, YELLOW "%s %d: triggering tint0 restart due to change in transparency" RESET "\n", __FILE__, __LINE__);
 							signal_pending = SIGUSR1;
 						}
 					}
@@ -1880,8 +1880,8 @@ start:
 		if (signal_pending) {
 			cleanup();
 			if (signal_pending == SIGUSR1) {
-				fprintf(stderr, YELLOW "%s %d: restarting tint2..." RESET "\n", __FILE__, __LINE__);
-				// restart tint2
+				fprintf(stderr, YELLOW "%s %d: restarting tint0..." RESET "\n", __FILE__, __LINE__);
+				// restart tint0
 				// SIGUSR1 used when : user's signal, composite manager stop/start or xrandr
 				goto start;
 			} else {

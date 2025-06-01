@@ -1,5 +1,5 @@
 /**************************************************************************
-* Tint2 : .desktop file handling
+* tint0 : .desktop file handling
 *
 * Copyright (C) 2015       (mrovi9000@gmail.com)
 *

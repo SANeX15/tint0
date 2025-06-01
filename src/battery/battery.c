@@ -1,6 +1,6 @@
 /**************************************************************************
 *
-* Tint2 : Generic battery
+* tint0 : Generic battery
 *
 * Copyright (C) 2009-2015 Sebastian Reichel <sre@ring0.de>
 *

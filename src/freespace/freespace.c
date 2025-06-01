@@ -1,6 +1,6 @@
 /**************************************************************************
 *
-* Tint2 : freespace
+* tint0 : freespace
 *
 * Copyright (C) 2011 Mishael A Sibiryakov (death@junki.org)
 *

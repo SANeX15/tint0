@@ -1,6 +1,6 @@
 /**************************************************************************
 *
-* Tint2 panel
+* tint0 panel
 *
 * Copyright (C) 2007 Pål Staurland (staura@gmail.com)
 * Modified (C) 2008 thierry lorthiois (lorthiois@bbsoft.fr)
@@ -245,7 +245,7 @@ void get_root_pixmap()
 	server.root_pmap = ret;
 
 	if (server.root_pmap == None) {
-		fprintf(stderr, "tint2 : pixmap background detection failed\n");
+		fprintf(stderr, "tint0 : pixmap background detection failed\n");
 	} else {
 		XGCValues gcv;
 		gcv.ts_x_origin = 0;
@@ -308,7 +308,7 @@ void get_monitors()
 		if (res && res->ncrtc >= num_monitors) {
 			// use xrandr to identify monitors (does not work with proprietery nvidia drivers)
 
-			// Workaround for issue https://gitlab.com/o9000/tint2/issues/353
+			// Workaround for issue https://gitlab.com/o9000/tint0/issues/353
 			// on some recent configs, XRRGetScreenResourcesCurrent returns a fantom monitor at last position
 			{
 				int i = res->ncrtc - 1;
@@ -539,7 +539,7 @@ void get_desktops()
 	}
 	if (server.num_desktops == 0) {
 		server.num_desktops = 1;
-		fprintf(stderr, "warning : WM doesn't respect NETWM specs. tint2 default to 1 desktop.\n");
+		fprintf(stderr, "warning : WM doesn't respect NETWM specs. tint0 default to 1 desktop.\n");
 	}
 }
 

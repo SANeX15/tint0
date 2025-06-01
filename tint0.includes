@@ -7,7 +7,7 @@
 ./src/sysmon
 ./src/systray
 ./src/taskbar
-./src/tint2conf
+./src/tint0conf
 ./src/tooltip
 ./src/util
 /usr/include
@@ -18,6 +18,6 @@
 /usr/include/pango-1.0
 /usr/include/startup-notification-1.0
 po
-src/tint2conf/po
+src/tint0conf/po
 src/freespace
 src/execplugin

@@ -1,38 +1,4 @@
-tint2 is developped by :
-- Thierry Lorthiois <lorthiois@bbsoft.fr> from Omega distribution
-- Andreas Fink <andreas.fink85@googlemail.com>
-- Euan Freeman <euan04@gmail.com> (tintwizard)
-- Christian Ruppert <Spooky85@gmail.com> (autotools build system)
-- Ovidiu M <mrovi9000 at gmail.com> : launcher, bug fixes
-- Mishael A Sibiryakov (death@junki.org) : freespace
-- Sebastian Reichel <sre@ring0.de> : battery, various fixes, debian package maintainer
+tint0 is developped by :
+- SANeX
 
-tint2 is based on the ttm source code (http://code.google.com/p/ttm/)
-- 2007-2008 Pål Staurland <staura@gmail.com>
-
-Contributors:
-  Kwaku Yeboah <kwakuyeboah@gmail.com> : wiki page
-  Daniel Moerner <dmoerner@gmail.com> : man page and debian package
-  Doug Barton : freebsd package
-  James Buren <ryuo@frugalware.org> : Frugalware package
-  Pierre-Emmanuel Andre <pea@raveland.org> : openbsd port
-  Redroar : arch package
-  Rene Garcia <garciamx@gmail.com> : launcher SVG support
-  Marcelo Vianna : taskbar sorting
-  Xico Atelo : startup notifications
-  Craig Oakes : WM flags, issue tracker organization
-  Jeff Blake (https://gitlab.com/u/berkley4) : more mouse event handlers
-
-Translations:
-  Bosnian:
-    Dino Duratović <dinomol@mail.com>
-  Croatian:
-    Dino Duratović <dinomol@mail.com>
-  French:
-    Jocelyn <anechampenois@solydxk.com>
-    The Bento team <meets@gmx.fr>
-    Wagner <https://gitlab.com/u/wagmic>
-  Polish:
-    Daniel Napora <napcok@gmail.com>
-  Serbian:
-    Dino Duratović <dinomol@mail.com>
+tint0 is based on tint2.

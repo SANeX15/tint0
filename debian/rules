@@ -7,8 +7,8 @@ override_dh_auto_configure:
 	dh_auto_configure -- -DCMAKE_BUILD_TYPE=RelWithDebInfo
 
 override_dh_strip:
-	dh_strip --dbg-package=tint2-dbg
+	dh_strip --dbg-package=tint0-dbg
 
 override_dh_installdocs:
-	dh_installdocs --link-doc=tint2
-	cp -r debian/wiki debian/tint2/usr/share/doc/tint2/html
+	dh_installdocs --link-doc=tint0
+	cp -r debian/wiki debian/tint0/usr/share/doc/tint0/html

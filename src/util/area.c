@@ -1,6 +1,6 @@
 /**************************************************************************
 *
-* Tint2 : area
+* tint0 : area
 *
 * Copyright (C) 2008 thierry lorthiois (lorthiois@bbsoft.fr) from Omega distribution
 *

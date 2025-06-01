@@ -1,6 +1,6 @@
 /**************************************************************************
 *
-* Tint2 : read/write config file
+* tint0 : read/write config file
 *
 * Copyright (C) 2007 Pål Staurland (staura@gmail.com)
 * Modified (C) 2008 thierry lorthiois (lorthiois@bbsoft.fr) from Omega distribution
@@ -37,7 +37,7 @@
 
 #include "config.h"
 
-#ifndef TINT2CONF
+#ifndef tint0CONF
 
 #include "common.h"
 #include "server.h"
@@ -64,7 +64,7 @@
 char *config_path;
 char *snapshot_path;
 
-#ifndef TINT2CONF
+#ifndef tint0CONF
 
 // --------------------------------------------------
 // backward compatibility
@@ -338,7 +338,7 @@ void add_entry(char *key, char *value)
 #ifdef ENABLE_BATTERY
 				battery_enabled = 1;
 #else
-				fprintf(stderr, "tint2 is build without battery support\n");
+				fprintf(stderr, "tint0 is build without battery support\n");
 #endif
 			}
 			if (panel_items_order[j] == 'S') {
@@ -918,7 +918,7 @@ void add_entry(char *key, char *value)
 		load_launcher_app_dir(path);
 		free(path);
 	} else if (strcmp(key, "launcher_icon_theme") == 0) {
-		// if XSETTINGS manager running, tint2 use it.
+		// if XSETTINGS manager running, tint0 use it.
 		if (icon_theme_name_config)
 			free(icon_theme_name_config);
 		icon_theme_name_config = strdup(value);
@@ -1042,7 +1042,7 @@ void add_entry(char *key, char *value)
 	}
 #endif
 	else
-		fprintf(stderr, "tint2 : invalid option \"%s\",\n  upgrade tint2 or correct your config file\n", key);
+		fprintf(stderr, "tint0 : invalid option \"%s\",\n  upgrade tint0 or correct your config file\n", key);
 
 	if (value1)
 		free(value1);
@@ -1109,8 +1109,8 @@ gboolean config_read_default_path()
 	gchar *path1;
 
 	// follow XDG specification
-	// check tint2rc in user directory
-	path1 = g_build_filename(g_get_user_config_dir(), "tint2", "tint2rc", NULL);
+	// check tint0rc in user directory
+	path1 = g_build_filename(g_get_user_config_dir(), "tint0", "tint0rc", NULL);
 	if (g_file_test(path1, G_FILE_TEST_EXISTS)) {
 		gboolean result = config_read_file(path1);
 		config_path = strdup(path1);
@@ -1119,11 +1119,11 @@ gboolean config_read_default_path()
 	}
 	g_free(path1);
 
-	// copy tint2rc from system directory to user directory
+	// copy tint0rc from system directory to user directory
 	gchar *path2 = 0;
 	system_dirs = g_get_system_config_dirs();
 	for (int i = 0; system_dirs[i]; i++) {
-		path2 = g_build_filename(system_dirs[i], "tint2", "tint2rc", NULL);
+		path2 = g_build_filename(system_dirs[i], "tint0", "tint0rc", NULL);
 
 		if (g_file_test(path2, G_FILE_TEST_EXISTS))
 			break;
@@ -1133,12 +1133,12 @@ gboolean config_read_default_path()
 
 	if (path2) {
 		// copy file in user directory (path1)
-		gchar *dir = g_build_filename(g_get_user_config_dir(), "tint2", NULL);
+		gchar *dir = g_build_filename(g_get_user_config_dir(), "tint0", NULL);
 		if (!g_file_test(dir, G_FILE_TEST_IS_DIR))
 			g_mkdir(dir, 0700);
 		g_free(dir);
 
-		path1 = g_build_filename(g_get_user_config_dir(), "tint2", "tint2rc", NULL);
+		path1 = g_build_filename(g_get_user_config_dir(), "tint0", "tint0rc", NULL);
 		copy_file(path2, path1);
 		g_free(path2);
 
@@ -1149,13 +1149,13 @@ gboolean config_read_default_path()
 	}
 
 	// generate empty config file
-	fprintf(stderr, "tint2 warning: could not find a config file!\n");
-	gchar *dir = g_build_filename(g_get_user_config_dir(), "tint2", NULL);
+	fprintf(stderr, "tint0 warning: could not find a config file!\n");
+	gchar *dir = g_build_filename(g_get_user_config_dir(), "tint0", NULL);
 	if (!g_file_test(dir, G_FILE_TEST_IS_DIR))
 		g_mkdir(dir, 0700);
 	g_free(dir);
 
-	path1 = g_build_filename(g_get_user_config_dir(), "tint2", "tint2rc", NULL);
+	path1 = g_build_filename(g_get_user_config_dir(), "tint0", "tint0rc", NULL);
 	copy_file("/dev/null", path1);
 
 	gboolean result = config_read_file(path1);

@@ -1,15 +1,15 @@
-# Bosnian translation for tint2conf.
-# Copyright (C) 2015 tint2's copyright holder
-# This file is distributed under the same license as the tint2 package.
+# Croatian translation for tint0conf.
+# Copyright (C) 2015 tint0's copyright holder
+# This file is distributed under the same license as the tint0 package.
 # Dino Duratović <dinomol@mail.com>, 2015.
 msgid   ""
-msgstr  "Project-Id-Version: tint2conf 0.12\n"
+msgstr  "Project-Id-Version: tint0conf 0.12\n"
         "Report-Msgid-Bugs-To: \n"
         "POT-Creation-Date: 2016-01-17 13:33+0100\n"
         "PO-Revision-Date: 2015-06-14 13:32+0200\n"
         "Last-Translator: Dino Duratović <dinomol@mail.com>\n"
         "Language-Team: \n"
-        "Language: bs\n"
+        "Language: hr\n"
         "MIME-Version: 1.0\n"
         "Content-Type: text/plain; charset=UTF-8\n"
         "Content-Transfer-Encoding: 8bit\n"
@@ -623,9 +623,9 @@ msgstr  "Ime prozora"
 
 #: ../properties.c:1649
 msgid   "Specifies the name of the panel window. This is useful if you want "
-        "to configure special treatment of tint2 windows in your window "
+        "to configure special treatment of tint0 windows in your window "
         "manager or compositor."
-msgstr  "Određuje ime prozora ploče. Ovo je korisno ako želite da tint2 "
+msgstr  "Određuje ime prozora ploče. Ovo je korisno ako želite da tint0 "
         "prozori imaju poseban tretman kod upravljača prozora ili kompozitora."
 
 #: ../properties.c:1692 ../properties.c:1882
@@ -819,10 +819,10 @@ msgid   "Icon theme"
 msgstr  "Tema ikona"
 
 #: ../properties.c:2760
-msgid   "The icon theme used to display launcher icons. If left blank, tint2 "
+msgid   "The icon theme used to display launcher icons. If left blank, tint0 "
         "will detect and use the icon theme of your desktop as long as you "
         "have an XSETTINGS manager running (most desktop environments do)."
-msgstr  "Tema ikona koja se koristi u pokretaču. Ako se ostavi prazno, tint2 "
+msgstr  "Tema ikona koja se koristi u pokretaču. Ako se ostavi prazno, tint0 "
         "će otrkiti i koristiti temu koju koristi okruženje ako postoji neki "
         "XSETTINGS upravljač (ima u većini radnih okruženja)."
 
@@ -2046,8 +2046,8 @@ msgid   "Specifies the font color used to display the text of the tooltip."
 msgstr  "Određuje boju fonta za prikaz teksta unutar opisa."
 
 #: ../main.c:148
-msgid   "tint2conf"
-msgstr  "tint2conf"
+msgid   "tint0conf"
+msgstr  "tint0conf"
 
 #: ../main.c:156
 msgid   "Panel theming"
@@ -2138,19 +2138,19 @@ msgid   "About"
 msgstr  "O programu"
 
 #: ../main.c:198
-msgid   "Command to run tint2: "
-msgstr  "Komanda za pokretanje tint2: "
+msgid   "Command to run tint0: "
+msgstr  "Komanda za pokretanje tint0: "
 
 #: ../main.c:242
-msgid   "Theming tool for tint2 panel"
-msgstr  "Alat za uređivanje tint2 tema"
+msgid   "Theming tool for tint0 panel"
+msgstr  "Alat za uređivanje tint0 tema"
 
 #: ../main.c:244
-msgid   "Copyright 2009-2015 tint2 team\n"
-        "Tint2 License GNU GPL version 2\n"
+msgid   "Copyright 2009-2015 tint0 team\n"
+        "tint0 License GNU GPL version 2\n"
         "Tintwizard License GNU GPL version 3"
-msgstr  "Autorska prava 2009-2015 tint2 tim\n"
-        "Tint2 licenca GNU GPL verzija 2\n"
+msgstr  "Autorska prava 2009-2015 tint0 tim\n"
+        "tint0 licenca GNU GPL verzija 2\n"
         "Tintwizard licenca GNU GPL verzija 3"
 
 #: ../main.c:249

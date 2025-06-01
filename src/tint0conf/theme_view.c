@@ -1,6 +1,6 @@
 /**************************************************************************
 *
-* Tint2conf
+* tint0conf
 *
 * Copyright (C) 2009 Thierry lorthiois (lorthiois@bbsoft.fr) from Omega distribution
 *
@@ -100,9 +100,9 @@ gint theme_name_compare(GtkTreeModel *model,
 	}
 	if (g_str_equal(name_a, name_b))
 		return 0;
-	if (g_str_equal(name_a, "tint2rc"))
+	if (g_str_equal(name_a, "tint0rc"))
 		return -1;
-	if (g_str_equal(name_b, "tint2rc"))
+	if (g_str_equal(name_b, "tint0rc"))
 		return 1;
 	gint result = strnatcasecmp(name_a, name_b);
 	g_free(path_a);
@@ -143,11 +143,11 @@ gboolean update_snapshot()
 		GdkPixbuf *pixbuf = NULL;
 		gchar *name, *snap, *cmd;
 
-		snap = g_build_filename(g_get_user_config_dir(), "tint2", "snap.jpg", NULL);
+		snap = g_build_filename(g_get_user_config_dir(), "tint0", "snap.jpg", NULL);
 		g_remove(snap);
 
 		gtk_tree_model_get(model, &iter, COL_THEME_FILE, &name, -1);
-		cmd = g_strdup_printf("tint2 -c \'%s\' -s \'%s\'", name, snap);
+		cmd = g_strdup_printf("tint0 -c \'%s\' -s \'%s\'", name, snap);
 		if (system(cmd) == 0) {
 			// load
 			pixbuf = gdk_pixbuf_new_from_file(snap, NULL);

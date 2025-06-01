@@ -1,0 +1,12 @@
+/usr/bin/tint0
+/usr/bin/tint0conf
+/etc/xdg/tint0/tint0rc
+/usr/share/applications/tint0.desktop
+/usr/share/applications/tint0conf.desktop
+/usr/share/man/man1/tint0.1
+/usr/share/doc/tint0/AUTHORS
+/usr/share/doc/tint0/README.md
+/usr/share/icons/hicolor/scalable/apps/tint0.svg
+/usr/share/icons/hicolor/scalable/apps/tint0conf.svg
+/usr/share/locale/*
+/usr/share/tint0/default_icon.png

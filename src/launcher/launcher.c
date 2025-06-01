@@ -1,9 +1,9 @@
 /**************************************************************************
-* Tint2 : launcher
+* tint0 : launcher
 *
 * Copyright (C) 2010       (mrovi@interfete-web-club.com)
 *
-* SVG support: https://github.com/ixxra/tint2-svg
+* SVG support: https://github.com/ixxra/tint0-svg
 * Copyright (C) 2010       Rene Garcia (garciamx@gmail.com)
 *
 * This program is free software; you can redistribute it and/or
@@ -380,7 +380,7 @@ void launcher_action(LauncherIcon *icon, XEvent *evt)
 	if (startup_notifications) {
 		ctx = sn_launcher_context_new(server.sn_display, server.screen);
 		sn_launcher_context_set_name(ctx, icon->icon_tooltip);
-		sn_launcher_context_set_description(ctx, "Application launched from tint2");
+		sn_launcher_context_set_description(ctx, "Application launched from tint0");
 		sn_launcher_context_set_binary_name(ctx, icon->cmd);
 		// Get a timestamp from the X event
 		if (evt->type == ButtonPress || evt->type == ButtonRelease) {
@@ -390,7 +390,7 @@ void launcher_action(LauncherIcon *icon, XEvent *evt)
 			free(cmd);
 			return;
 		}
-		sn_launcher_context_initiate(ctx, "tint2", icon->cmd, time);
+		sn_launcher_context_initiate(ctx, "tint0", icon->cmd, time);
 	}
 #endif /* HAVE_SN */
 	pid_t pid;

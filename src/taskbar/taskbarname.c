@@ -1,6 +1,6 @@
 /**************************************************************************
 *
-* Tint2 : taskbarname
+* tint0 : taskbarname
 *
 * Copyright (C) 2008 thierry lorthiois (lorthiois@bbsoft.fr) from Omega distribution
 *

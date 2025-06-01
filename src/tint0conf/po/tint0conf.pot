@@ -6,7 +6,7 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: tint2conf 0.12\n"
+"Project-Id-Version: tint0conf 0.12\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-17 13:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -587,7 +587,7 @@ msgstr ""
 #: ../properties.c:1649
 msgid ""
 "Specifies the name of the panel window. This is useful if you want to "
-"configure special treatment of tint2 windows in your window manager or "
+"configure special treatment of tint0 windows in your window manager or "
 "compositor."
 msgstr ""
 
@@ -770,7 +770,7 @@ msgstr ""
 
 #: ../properties.c:2760
 msgid ""
-"The icon theme used to display launcher icons. If left blank, tint2 will "
+"The icon theme used to display launcher icons. If left blank, tint0 will "
 "detect and use the icon theme of your desktop as long as you have an "
 "XSETTINGS manager running (most desktop environments do)."
 msgstr ""
@@ -1902,7 +1902,7 @@ msgid "Specifies the font color used to display the text of the tooltip."
 msgstr ""
 
 #: ../main.c:148
-msgid "tint2conf"
+msgid "tint0conf"
 msgstr ""
 
 #: ../main.c:156
@@ -1994,17 +1994,17 @@ msgid "About"
 msgstr ""
 
 #: ../main.c:198
-msgid "Command to run tint2: "
+msgid "Command to run tint0: "
 msgstr ""
 
 #: ../main.c:242
-msgid "Theming tool for tint2 panel"
+msgid "Theming tool for tint0 panel"
 msgstr ""
 
 #: ../main.c:244
 msgid ""
-"Copyright 2009-2015 tint2 team\n"
-"Tint2 License GNU GPL version 2\n"
+"Copyright 2009-2015 tint0 team\n"
+"tint0 License GNU GPL version 2\n"
 "Tintwizard License GNU GPL version 3"
 msgstr ""
 

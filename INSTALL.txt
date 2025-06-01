@@ -1,5 +1,5 @@
-To build and install tint2 you need CMake.
-These steps should be enough for building tint2:
+To build and install tint0 you need CMake.
+These steps should be enough for building tint0:
 
 mkdir build
 cd build

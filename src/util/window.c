@@ -1,6 +1,6 @@
 /**************************************************************************
 *
-* Tint2 : common windows function
+* tint0 : common windows function
 *
 * Copyright (C) 2007 Pål Staurland (staura@gmail.com)
 * Modified (C) 2008 thierry lorthiois (lorthiois@bbsoft.fr) from Omega distribution

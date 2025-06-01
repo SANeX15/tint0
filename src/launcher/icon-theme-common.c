@@ -1,5 +1,5 @@
 /**************************************************************************
-* Tint2 : Icon theme handling
+* tint0 : Icon theme handling
 *
 * Copyright (C) 2015       (mrovi9000@gmail.com)
 *

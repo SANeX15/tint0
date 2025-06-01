@@ -1,5 +1,5 @@
 /**************************************************************************
-* Tint2 : systraybar
+* tint0 : systraybar
 *
 * Copyright (C) 2009 thierry lorthiois (lorthiois@bbsoft.fr) from Omega distribution
 * based on 'docker-1.5' from Ben Jansens.
@@ -339,7 +339,7 @@ void start_net()
 		                             &bytes_after,
 		                             &prop);
 
-		fprintf(stderr, RED "tint2 : another systray is running" RESET);
+		fprintf(stderr, RED "tint0 : another systray is running" RESET);
 		if (ret == Success && prop) {
 			pid = prop[1] * 256;
 			pid += prop[0];
@@ -353,7 +353,7 @@ void start_net()
 	net_sel_win = XCreateSimpleWindow(server.display, server.root_win, -1, -1, 1, 1, 0, 0, 0);
 	fprintf(stderr, "systray window %ld\n", net_sel_win);
 
-	// v0.3 trayer specification. tint2 always horizontal.
+	// v0.3 trayer specification. tint0 always horizontal.
 	// Vertical panel will draw the systray horizontal.
 	long orientation = 0;
 	XChangeProperty(server.display,
@@ -402,11 +402,11 @@ void start_net()
 	XSetSelectionOwner(server.display, server.atom._NET_SYSTEM_TRAY_SCREEN, net_sel_win, CurrentTime);
 	if (XGetSelectionOwner(server.display, server.atom._NET_SYSTEM_TRAY_SCREEN) != net_sel_win) {
 		stop_net();
-		fprintf(stderr, RED "tint2 : can't get systray manager" RESET "\n");
+		fprintf(stderr, RED "tint0 : can't get systray manager" RESET "\n");
 		return;
 	}
 
-	fprintf(stderr, GREEN "tint2 : systray started" RESET "\n");
+	fprintf(stderr, GREEN "tint0 : systray started" RESET "\n");
 	if (systray_profile)
 		fprintf(stderr, "[%f] %s:%d\n", profiling_get_time(), __FUNCTION__, __LINE__);
 	XClientMessageEvent ev;
@@ -887,7 +887,7 @@ gboolean embed_icon(TrayWindow *traywin)
 						// We could defer this for later (if we set PropertyChangeMask in XSelectInput we get notified)
 						// but
 						// for some reason it breaks transparency for Qt icons. So we don't.
-						// fprintf(stderr, RED "tint2: window refused embedding" RESET "\n");
+						// fprintf(stderr, RED "tint0: window refused embedding" RESET "\n");
 						// remove_icon(traywin);
 						// XFree(data);
 						// return FALSE;
@@ -896,7 +896,7 @@ gboolean embed_icon(TrayWindow *traywin)
 				XFree(data);
 			}
 		} else {
-			fprintf(stderr, RED "tint2 : xembed error" RESET "\n");
+			fprintf(stderr, RED "tint0 : xembed error" RESET "\n");
 			remove_icon(traywin);
 			return FALSE;
 		}

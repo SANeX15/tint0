@@ -1,6 +1,6 @@
 /**************************************************************************
 *
-* Tint2 : Linux battery
+* tint0 : Linux battery
 *
 * Copyright (C) 2015 Sebastian Reichel <sre@ring0.de>
 *

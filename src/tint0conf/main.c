@@ -1,6 +1,6 @@
 /**************************************************************************
 *
-* Tint2conf
+* tint0conf
 *
 * Copyright (C) 2009 Thierry lorthiois (lorthiois@bbsoft.fr) from Omega distribution
 *
@@ -39,7 +39,7 @@ gchar *get_default_config_path()
 	const gchar * const * system_dirs = g_get_system_config_dirs();
 	int i;
 	for (i = 0; system_dirs[i]; i++) {
-		path = g_build_filename(system_dirs[i], "tint2", "tint2rc", NULL);
+		path = g_build_filename(system_dirs[i], "tint0", "tint0rc", NULL);
 		if (g_file_test(path, G_FILE_TEST_EXISTS))
 			return path;
 		g_free(path);
@@ -139,13 +139,13 @@ int main(int argc, char **argv)
 #endif
 
 	{
-		gchar *tint2_config_dir = g_build_filename(g_get_user_config_dir(), "tint2", NULL);
-		if (!g_file_test(tint2_config_dir, G_FILE_TEST_IS_DIR))
-			g_mkdir(tint2_config_dir, 0777);
-		g_free(tint2_config_dir);
+		gchar *tint0_config_dir = g_build_filename(g_get_user_config_dir(), "tint0", NULL);
+		if (!g_file_test(tint0_config_dir, G_FILE_TEST_IS_DIR))
+			g_mkdir(tint0_config_dir, 0777);
+		g_free(tint0_config_dir);
 	}
 
-	g_set_application_name(_("tint2conf"));
+	g_set_application_name(_("tint0conf"));
 	gtk_window_set_default_icon_name("taskbar");
 	
 	// config file uses '.' as decimal separator
@@ -195,7 +195,7 @@ int main(int argc, char **argv)
 	gtk_table_set_row_spacings(GTK_TABLE(table), 8);
 	gtk_table_set_col_spacings(GTK_TABLE(table), 8);
 
-	label = gtk_label_new(_("Command to run tint2: "));
+	label = gtk_label_new(_("Command to run tint0: "));
 	gtk_misc_set_alignment(GTK_MISC(label), 0, 0);
 	gtk_widget_show(label);
 	gtk_table_attach(GTK_TABLE(table), label, col, col+1, row, row+1, GTK_FILL, 0, 0, 0);
@@ -239,9 +239,9 @@ static void menuAbout()
 
 	gtk_show_about_dialog(GTK_WINDOW(g_window),
 						  "name", g_get_application_name( ),
-						  "comments", _("Theming tool for tint2 panel"),
+						  "comments", _("Theming tool for tint0 panel"),
 						  "version", VERSION_STRING,
-						  "copyright", _("Copyright 2009-2015 tint2 team\nTint2 License GNU GPL version 2\nTintwizard License GNU GPL version 3"),
+						  "copyright", _("Copyright 2009-2015 tint0 team\ntint0 License GNU GPL version 2\nTintwizard License GNU GPL version 3"),
 						  "logo-icon-name", "taskbar", "authors", authors,
 						  /* Translators: translate "translator-credits" as
 														  your name to have it appear in the credits in the "About"
@@ -276,7 +276,7 @@ static void menuImport()
 			continue;
 
 		gchar *name = pt1;
-		gchar *path = g_build_filename(g_get_user_config_dir(), "tint2", name, NULL);
+		gchar *path = g_build_filename(g_get_user_config_dir(), "tint0", name, NULL);
 		if (g_file_test(path, G_FILE_TEST_EXISTS))
 			continue;
 		copy_file(file, path);
@@ -295,7 +295,7 @@ static void menuImportDefault()
 
 	gtk_file_chooser_set_do_overwrite_confirmation(chooser, TRUE);
 	gchar *config_dir;
-	config_dir = g_build_filename(g_get_home_dir(), ".config", "tint2", NULL);
+	config_dir = g_build_filename(g_get_home_dir(), ".config", "tint0", NULL);
 	gtk_file_chooser_set_current_folder(chooser, config_dir);
 	g_free(config_dir);
 
@@ -337,7 +337,7 @@ static void menuSaveAs()
 
 	gtk_file_chooser_set_do_overwrite_confirmation(chooser, TRUE);
 	gchar *config_dir;
-	config_dir = g_build_filename(g_get_home_dir(), ".config", "tint2", NULL);
+	config_dir = g_build_filename(g_get_home_dir(), ".config", "tint0", NULL);
 	gtk_file_chooser_set_current_folder(chooser, config_dir);
 	g_free(config_dir);
 	gtk_file_chooser_set_current_name(chooser, pt1);
@@ -429,7 +429,7 @@ gboolean theme_selected(GtkTreeSelection *selection,
 		gchar *current_theme = NULL;
 		gtk_tree_model_get(model, &iter, COL_THEME_FILE, &current_theme,  -1);
 		if (!path_currently_selected) {
-			gchar *text = g_strdup_printf("tint2 -c %s", current_theme);
+			gchar *text = g_strdup_printf("tint0 -c %s", current_theme);
 			gtk_entry_set_text(GTK_ENTRY(tint_cmd), text);
 			g_free(text);
 		} else {
@@ -502,14 +502,14 @@ static void set_current_theme()
 		gtk_tree_model_get(model, &iter, COL_THEME_FILE, &file,  -1);
 		// config_read_file(file);
 
-		gchar *main_file = g_build_filename(g_get_user_config_dir(), "tint2", "tint2rc", NULL);
+		gchar *main_file = g_build_filename(g_get_user_config_dir(), "tint0", "tint0rc", NULL);
 		{
 			gchar *backup_path = g_strdup_printf("%s.backup.%ld", main_file, time(NULL));
 			copy_file(main_file, backup_path);
 			g_free(backup_path);
 		}
 		copy_file(file, main_file);
-		int unused = system("killall -SIGUSR1 tint2 || pkill -SIGUSR1 -x tint2");
+		int unused = system("killall -SIGUSR1 tint0 || pkill -SIGUSR1 -x tint0");
 		(void)unused;
 		g_free(file);
 		select_first_theme();
@@ -527,12 +527,12 @@ static void viewRowActivated(GtkTreeView *tree_view, GtkTreePath *path, GtkTreeV
 #if 0
 static void copy_default_themes()
 {
-	gchar *path_home = g_build_filename(g_get_user_config_dir(), "tint2", "tint2rc", NULL);
+	gchar *path_home = g_build_filename(g_get_user_config_dir(), "tint0", "tint0rc", NULL);
 	if (!g_file_test(path_home, G_FILE_TEST_EXISTS)) {
 		const gchar * const * system_dirs = g_get_system_config_dirs();
 		int i;
 		for (i = 0; system_dirs[i]; i++) {
-			gchar *path = g_build_filename(system_dirs[i], "tint2", "tint2rc", NULL);
+			gchar *path = g_build_filename(system_dirs[i], "tint0", "tint0rc", NULL);
 			if (g_file_test(path, G_FILE_TEST_EXISTS)) {
 				copy_file(path, path_home);
 			}
@@ -544,9 +544,9 @@ static void copy_default_themes()
 	const gchar * const * data_dirs = g_get_system_data_dirs();
 	int i;
 	for (i = 0; data_dirs[i]; i++) {
-		gchar *path_tint2 = g_build_filename(data_dirs[i], "tint2", NULL);
-		fprintf(stderr, "%s\n", path_tint2);
-		GDir *dir = g_dir_open(path_tint2, 0, NULL);
+		gchar *path_tint0 = g_build_filename(data_dirs[i], "tint0", NULL);
+		fprintf(stderr, "%s\n", path_tint0);
+		GDir *dir = g_dir_open(path_tint0, 0, NULL);
 		if (dir) {
 			const gchar *file_name;
 			while ((file_name = g_dir_read_name(dir))) {
@@ -554,11 +554,11 @@ static void copy_default_themes()
 					!strstr(file_name, "backup") &&
 					!strstr(file_name, "copy") &&
 					!strstr(file_name, "~") &&
-					(endswith(file_name, "tint2rc") ||
+					(endswith(file_name, "tint0rc") ||
 					 endswith(file_name, ".conf"))) {
-					gchar *path_home = g_build_filename(g_get_user_config_dir(), "tint2", file_name, NULL);
+					gchar *path_home = g_build_filename(g_get_user_config_dir(), "tint0", file_name, NULL);
 					if (!g_file_test(path_home, G_FILE_TEST_EXISTS)) {
-						gchar *path_usr = g_build_filename(path_tint2, file_name, NULL);
+						gchar *path_usr = g_build_filename(path_tint0, file_name, NULL);
 						copy_file(path_usr, path_home);
 						g_free(path_usr);
 					}
@@ -567,7 +567,7 @@ static void copy_default_themes()
 			}
 			g_dir_close(dir);
 		}
-		g_free(path_tint2);
+		g_free(path_tint0);
 	}
 }
 #endif
@@ -581,10 +581,10 @@ static void load_all_themes()
 
 	gtk_list_store_clear(GTK_LIST_STORE(g_store));
 
-	gchar *tint2_config_dir = g_build_filename(g_get_user_config_dir(), "tint2", NULL);
-	GDir *dir = g_dir_open(tint2_config_dir, 0, NULL);
+	gchar *tint0_config_dir = g_build_filename(g_get_user_config_dir(), "tint0", NULL);
+	GDir *dir = g_dir_open(tint0_config_dir, 0, NULL);
 	if (dir == NULL) {
-		g_free(tint2_config_dir);
+		g_free(tint0_config_dir);
 		return;
 	}
 	gboolean found_theme = FALSE;
@@ -595,10 +595,10 @@ static void load_all_themes()
 			!strstr(file_name, "backup") &&
 			!strstr(file_name, "copy") &&
 			!strstr(file_name, "~") &&
-			(endswith(file_name, "tint2rc") ||
+			(endswith(file_name, "tint0rc") ||
 			 endswith(file_name, ".conf"))) {
 			found_theme = TRUE;
-			gchar *name = g_build_filename(tint2_config_dir, file_name, NULL);
+			gchar *name = g_build_filename(tint0_config_dir, file_name, NULL);
 			custom_list_append(name);
 			g_free(name);
 		}
@@ -622,7 +622,7 @@ static void load_all_themes()
 	}
 
 	g_dir_close(dir);
-	g_free(tint2_config_dir);
+	g_free(tint0_config_dir);
 }
 
 static void refresh_current_theme()
